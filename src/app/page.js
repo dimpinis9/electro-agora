@@ -1,95 +1,66 @@
-import Image from "next/image";
+// src/app/page.js
+
 import styles from "./page.module.css";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <nav>
+          <a href="#">Προσφορές</a>
+          <a href="#">Καλύτερες Προσφορές Σήμερα</a>
+          <a href="#">Καθαρισμός Αποθήκης</a>
+          <a href="#">Επικοινωνία</a>
+        </nav>
+      </header>
+
+      <section className={styles.hero}>
+        <div className={styles.heroSlide}>
+          <img src="/images/airfryer.jpg" alt="Air Fryers" />
+          <div className={styles.heroText}>
+            <h2>Air Fryers</h2>
+            <a href="#">Αγοράστε τώρα &gt;</a>
+          </div>
         </div>
-      </div>
+        <div className={styles.heroSlide}>
+          <img src="/images/heater.jpg" alt="Φορητά Καλοριφέρ" />
+          <div className={styles.heroText}>
+            <h2>Φορητά Καλοριφέρ</h2>
+            <p>Ιδανικά για τον χειμώνα!</p>
+            <a href="#">Δείτε τις προσφορές &gt;</a>
+          </div>
+        </div>
+      </section>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <section className={styles.deals}>
+        <h2>Προτεινόμενα Προϊόντα</h2>
+        <div className={styles.productGrid}>
+          <div className={styles.dealItem}>
+            <img src="/images/airfryer.jpg" alt="Air Fryer" />
+            <h3>Air Fryer</h3>
+            <p>Μοναδική τιμή: €99.00</p>
+            <a href="#">Προσθήκη στο καλάθι &gt;</a>
+          </div>
+          <div className={styles.dealItem}>
+            <img src="/images/heater.jpg" alt="Σκουπάκι" />
+            <h3>Καλοριφέρ</h3>
+            <p>Προσφορά: €49.00</p>
+            <a href="#">Προσθήκη στο καλάθι &gt;</a>
+          </div>
+          <div className={styles.dealItem}>
+            <img src="/images/toast.jpg" alt="Ψησταριά" />
+            <h3>Ψησταριά</h3>
+            <p>Τιμή: €79.00</p>
+            <a href="#">Προσθήκη στο καλάθι &gt;</a>
+          </div>
+          <div className={styles.dealItem}>
+            <img src="/images/hair-dryer.jpg" alt="Πιστολάκι Μαλλιών" />
+            <h3>Πιστολάκι Μαλλιών</h3>
+            <p>Τιμή: €35.00</p>
+            <a href="#">Προσθήκη στο καλάθι &gt;</a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
