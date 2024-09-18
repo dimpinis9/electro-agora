@@ -1,19 +1,59 @@
-// src/app/page.js
-
+"use client";
+import { useState } from "react";
 import styles from "./page.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HomePage() {
+  // Κατάσταση για το καλάθι
+  const [cart, setCart] = useState([]);
+  const [showComparison, setShowComparison] = useState(false); // Νέα κατάσταση για σύγκριση προϊόντων
+
+  // Προσθήκη προϊόντος στο καλάθι με toast
+  const addToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+    toast.success(`${product.name} προστέθηκε στο καλάθι!`, {
+      position: "top-right",
+    });
+  };
+
+  // Προϊόντα (μπορούμε να χρησιμοποιήσουμε δεδομένα από API ή βάση δεδομένων)
+  const products = [
+    {
+      id: 1,
+      name: "Air Fryer",
+      category: "Κουζίνα",
+      price: 99,
+      image: "/images/airfryer.jpg",
+    },
+    {
+      id: 2,
+      name: "Καλοριφέρ",
+      category: "Θέρμανση",
+      price: 49,
+      image: "/images/heater.jpg",
+    },
+    {
+      id: 3,
+      name: "Ψησταριά",
+      category: "Κουζίνα",
+      price: 79,
+      image: "/images/toast.jpg",
+    },
+    {
+      id: 4,
+      name: "Πιστολάκι Μαλλιών",
+      category: "Περιποίηση",
+      price: 35,
+      image: "/images/hair-dryer.jpg",
+    },
+  ];
+
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <nav>
-          <a href="#">Προσφορές</a>
-          <a href="#">Καλύτερες Προσφορές Σήμερα</a>
-          <a href="#">Καθαρισμός Αποθήκης</a>
-          <a href="#">Επικοινωνία</a>
-        </nav>
-      </header>
+      <ToastContainer />
 
+      {/* Τμήμα Προσφορών */}
       <section className={styles.hero}>
         <div className={styles.heroSlide}>
           <img src="/images/airfryer.jpg" alt="Air Fryers" />
@@ -32,34 +72,73 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Προτεινόμενα Προϊόντα */}
       <section className={styles.deals}>
         <h2>Προτεινόμενα Προϊόντα</h2>
         <div className={styles.productGrid}>
-          <div className={styles.dealItem}>
-            <img src="/images/airfryer.jpg" alt="Air Fryer" />
-            <h3>Air Fryer</h3>
-            <p>Μοναδική τιμή: €99.00</p>
-            <a href="#">Προσθήκη στο καλάθι &gt;</a>
-          </div>
-          <div className={styles.dealItem}>
-            <img src="/images/heater.jpg" alt="Σκουπάκι" />
-            <h3>Καλοριφέρ</h3>
-            <p>Προσφορά: €49.00</p>
-            <a href="#">Προσθήκη στο καλάθι &gt;</a>
-          </div>
-          <div className={styles.dealItem}>
-            <img src="/images/toast.jpg" alt="Ψησταριά" />
-            <h3>Ψησταριά</h3>
-            <p>Τιμή: €79.00</p>
-            <a href="#">Προσθήκη στο καλάθι &gt;</a>
-          </div>
-          <div className={styles.dealItem}>
-            <img src="/images/hair-dryer.jpg" alt="Πιστολάκι Μαλλιών" />
-            <h3>Πιστολάκι Μαλλιών</h3>
-            <p>Τιμή: €35.00</p>
-            <a href="#">Προσθήκη στο καλάθι &gt;</a>
-          </div>
+          {products.map((product) => (
+            <div key={product.id} className={styles.dealItem}>
+              <img src={product.image} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p>Μοναδική τιμή: €{product.price.toFixed(2)}</p>
+              <button onClick={() => addToCart(product)}>
+                Προσθήκη στο καλάθι &gt;
+              </button>
+            </div>
+          ))}
         </div>
+      </section>
+
+      {/* Προβολή Καλαθιού - Εμφανίζεται μόνο όταν υπάρχουν προϊόντα */}
+      {cart.length > 0 && (
+        <section className={styles.cartSection}>
+          <h2>Το Καλάθι Σας</h2>
+          <ul>
+            {cart.map((item, index) => (
+              <li key={index}>
+                {item.name} - {item.price.toFixed(2)}€
+              </li>
+            ))}
+          </ul>
+          <p>
+            Συνολικό Κόστος:{" "}
+            {cart.reduce((total, item) => total + item.price, 0).toFixed(2)}€
+          </p>
+        </section>
+      )}
+
+      {/* Σύγκριση Προϊόντων - Κρυφό αν δεν έχει επιλεχθεί */}
+      {showComparison && (
+        <section className={styles.compareSection}>
+          <h2>Σύγκριση Προϊόντων</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Προϊόν</th>
+                <th>Τιμή</th>
+                <th>Κατηγορία</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>€{product.price.toFixed(2)}</td>
+                  <td>{product.category}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      )}
+
+      {/* Κουμπί για εμφάνιση σύγκρισης προϊόντων */}
+      <section className={styles.compareButtonSection}>
+        <button onClick={() => setShowComparison(!showComparison)}>
+          {showComparison
+            ? "Κρύψε Σύγκριση Προϊόντων"
+            : "Εμφάνιση Σύγκρισης Προϊόντων"}
+        </button>
       </section>
     </div>
   );

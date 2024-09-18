@@ -7,56 +7,12 @@
   padding: 0 20px;
 }
 
-.header {
-  display: flex;
-  justify-content: center; /* Κεντράρισμα του μενού */
-  align-items: center;
-  background-color: #1a1a1a;
-  color: #fff;
-  padding: 15px 0;
-  position: relative;
-}
-
-.header nav {
-  display: flex;
-  gap: 20px; /* Απόσταση ανάμεσα στα στοιχεία του μενού */
-}
-
-.header a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 16px;
-  padding: 10px;
-  transition: color 0.3s ease;
-}
-
-.header a:hover {
-  color: #ddd; /* Ανοιχτότερο χρώμα κατά την πλοήγηση */
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column; /* Τοποθέτηση του μενού κάθετα στις μικρότερες οθόνες */
-    padding: 10px 20px;
-  }
-
-  .header nav {
-    flex-direction: column; /* Τα links θα εμφανίζονται το ένα κάτω από το άλλο */
-    gap: 10px; /* Μειώνουμε το κενό μεταξύ των links για μικρότερες οθόνες */
-  }
-
-  .header a {
-    padding: 10px 0; /* Προσαρμογή του padding για να μην γεμίζει όλη την οθόνη */
-    text-align: center; /* Κεντράρισμα του κειμένου στα links */
-  }
-}
-
 .hero {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  flex-wrap: wrap; /* Αυτό επιτρέπει στα slides να προσαρμόζονται σε μικρότερες οθόνες */
+  gap: 20px; /* Απόσταση μεταξύ των slides */
+  flex-wrap: wrap; /* Προσαρμόζεται σε μικρότερες οθόνες */
 }
 
 .heroSlide {
@@ -65,7 +21,8 @@
   height: 300px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
 .heroSlide img {
@@ -74,20 +31,38 @@
   object-fit: cover;
 }
 
+.heroSlide:hover {
+  transform: scale(1.05); /* Εφέ μεγέθυνσης κατά το hover */
+}
+
 .heroText {
   position: absolute;
   bottom: 20px;
   left: 20px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 15px;
   border-radius: 5px;
   font-size: 18px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .heroText h2 {
   margin: 0 0 5px 0;
   font-size: 24px;
+}
+
+.heroText a {
+  color: #fff;
+  text-decoration: none;
+  background-color: #ff5722;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.heroText a:hover {
+  background-color: #e64a19;
 }
 
 .deals {
@@ -96,7 +71,8 @@
 
 .deals h2 {
   margin-bottom: 20px;
-  font-size: 22px;
+  font-size: 28px;
+  text-align: center;
   color: #333;
 }
 
@@ -113,8 +89,14 @@
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   flex: 1 1 calc(25% - 20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dealItem:hover {
+  transform: translateY(-5px); /* Αφαιρείται από το έδαφος */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2); /* Πιο έντονη σκιά */
 }
 
 .dealItem img {
@@ -126,11 +108,12 @@
 .dealItem h3 {
   margin: 10px 0;
   font-size: 20px;
+  color: #333;
 }
 
 .dealItem p {
   font-size: 16px;
-  color: #555;
+  color: #777;
 }
 
 .dealItem a {
@@ -147,4 +130,127 @@
 
 .dealItem a:hover {
   background-color: #333;
+}
+
+.dealItem button {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dealItem button:hover {
+  background-color: #333;
+}
+
+.cartSection {
+  margin-top: 40px;
+}
+
+.cartSection ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cartSection li {
+  margin-bottom: 10px;
+}
+
+.offerBanner {
+  background-color: #f7f7f7;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.offerBanner h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.offerBanner a {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #ff6347;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.categoryFilter {
+  margin-bottom: 20px;
+}
+
+.categoryFilter select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.compareSection {
+  margin-top: 40px;
+}
+
+.compareSection table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.compareSection th,
+.compareSection td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.compareButtonSection {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.compareButtonSection button {
+  background-color: #ff5722; /* Έντονο χρώμα για να ξεχωρίζει */
+  color: #fff;
+  padding: 15px 25px; /* Μεγαλύτερο padding για πιο εμφανές κουμπί */
+  border: none;
+  border-radius: 8px; /* Στρογγυλεμένες άκρες για πιο μοντέρνα εμφάνιση */
+  font-size: 18px;
+  font-weight: bold; /* Έντονο κείμενο */
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Σκιά για να το αναδείξει */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Ομαλές μεταβάσεις για hover */
+}
+
+.compareButtonSection button:hover {
+  background-color: #e64a19; /* Πιο σκούρο χρώμα στο hover */
+  transform: scale(1.05); /* Εφέ μεγέθυνσης στο hover */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Εντονότερη σκιά στο hover */
+}
+
+.compareButtonSection button:active {
+  transform: scale(0.95); /* Μικρή σμίκρυνση κατά το πάτημα */
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .heroSlide {
+    width: 100%;
+    height: 200px;
+  }
+
+  .productGrid {
+    flex-direction: column;
+  }
+
+  .dealItem {
+    flex: 1 1 100%;
+  }
 }
